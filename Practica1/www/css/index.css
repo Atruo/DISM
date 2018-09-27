@@ -138,3 +138,9 @@ h1 {
     max-height:  400px;
     max-width: 600px;
 }
+
+#mapaEst {
+    max-height: 600px;
+    max-width: 900px;
+    
+}
