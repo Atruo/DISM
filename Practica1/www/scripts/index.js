@@ -1,35 +1,56 @@
-﻿// Si quiere una introducción sobre la plantilla En blanco, vea la siguiente documentación:
-// http://go.microsoft.com/fwlink/?LinkID=397704
-// Para depurar código al cargar la página en cordova-simulate o en dispositivos o emuladores Android: inicie la aplicación, establezca puntos de interrupción 
-// y ejecute "window.location.reload()" en la Consola de JavaScript.
-(function () {
-    "use strict";
+﻿function mun50000() {
 
-    document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
+    location.href = './mun50000.html';
+}
+function datosMun50000(){
+    var datos;
+    var datosfiltrados2 = [];
+    var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW55dWxzOThAZ21haWwuY29tIiwianRpIjoiYzQ3YzgyMzMtYzhjOC00OWQ5LTk0NzYtMDg2ZTczZGNmNDBjIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE1Mzc5NDcwMDksInVzZXJJZCI6ImM0N2M4MjMzLWM4YzgtNDlkOS05NDc2LTA4NmU3M2RjZjQwYyIsInJvbGUiOiIifQ.1Km6vaOtp-mmugfFkPhDYxziK_MZGdCAZG71Mi1ibJw';
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://opendata.aemet.es/opendata/api/maestro/municipios?api_key=" + key,
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache"
+        }
+    }
 
-    function onDeviceReady() {
-        // Controlar la pausa de Cordova y reanudar eventos
-        document.addEventListener( 'pause', onPause.bind( this ), false );
-        document.addEventListener( 'resume', onResume.bind( this ), false );
-        
-        // TODO: Cordova se ha cargado. Haga aquí las inicializaciones que necesiten Cordova.
-        var parentElement = document.getElementById('deviceready');
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-    };
 
-    function onPause() {
-        // TODO: esta aplicación se ha suspendido. Guarde el estado de la aplicación aquí.
-    };
+    InicializarGrid();
+    console.log('aqui')
+            function InicializarGrid() {
+                $.ajax(settings).done(function (response) {
+                    var j = 0;
+                    //Parseo a objeto para filtrar y meter en datatable
+                    datos = JSON.parse(response);
+                    //Filtro los municipios que contengan "san vicente"
+                    var cont = 0;
+                    for (var i = 0; i < datos.length; i++) {
+                        if (datos[i].num_hab >= 50000) {
+                            datosfiltrados2[cont] = datos[i];
+                            cont++;
+                        }
 
-    function onResume() {
-        // TODO: esta aplicación se ha reactivado. Restaure el estado de la aplicación aquí.
-    };
-})();
-
-function cambiar() {
-    var h1 = document.getElementById('hola');
-    h1.innerHTML = 'Adios Mundo';
-};
+                    }
+                    tabla = $('#dataGrid').DataTable({
+                        "data": datosfiltrados2,
+                        "columns": [
+                            {
+                                "data": "nombre"
+                            },
+                            {
+                                "data": "latitud"
+                            },
+                            {
+                                "data": "longitud"
+                            },
+                            {
+                                "data": "num_hab"
+                            }
+                        ]
+                    });
+                });
+            }
+    
+}
