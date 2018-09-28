@@ -279,7 +279,7 @@ function localizarEstaciones() {
 }
 
 function getIdema() {
-    
+
     var idema = document.getElementById('idema').value;
     console.log(idema);//Muestro el idema por consola
     var datos;
@@ -290,13 +290,60 @@ function getIdema() {
         "url": `https://opendata.aemet.es/opendata/api/observacion/convencional/datos/estacion/${idema}?api_key=${key}`,
         "method": "GET",
         "headers": {
-            "cache-control": "no-cache"
+            "cache-control": "no-cache",
+            'Accept': 'application/javascript'
         }
     }
     console.log(settings.url);//Muestro la url por consola
+
+
+
     $.ajax(settings).done(function (response) {
         console.log('entro');//Compruebo si he entrado
-        console.log(response);
+        //console.log(JSON.parse(response));
+    }).fail(function (res) {
+        console.log('mal')
+        var datos = JSON.parse(res.responseText).datos;
+        console.log(datos);
+        
+        $.get(datos, function (data, status) {
+            var mostrar,
+                sol = [];
+            data = JSON.parse(data);
+            for (let i = 0; i < data.length; i++){
+                mostrar = {
+                    'idema': idema,
+                    'ubicacion': data[i].ubi,
+                    'fecha_hora': data[i].fint,
+                    'temperatura': data[i].ts
+                }
+                sol.push(mostrar);
+            }
+            console.log(data[0])
+            tabla = $('#datos').DataTable({//Crear Tabla de datos
+                "data": sol,
+                "columns": [
+                    {
+                        "data": "idema"
+                    },
+                    {
+                        "data": "ubicacion"
+                    },
+                    {
+                        "data": "fecha_hora"
+                    },
+                    {
+                        "data": "temperatura"
+                    }
+
+                ]
+            });
+
+            
+        });
+
     });
 }
+
+    
     
