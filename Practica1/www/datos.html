@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <!-- Apache Cordova-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <!--JQUERY -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!--JQUERY MOBILE -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!--JQUERY, Datatable -->
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <title>Datos Meteoroñogicos</title>
+</head>
+<body>
+    <h1>Datos Meteorólógicos</h1>
+    Escribe el Idema: <input type="text" value="" id="idema" required />
+    <button onclick="getIdema();">Consultar</button>
+    
+</body>
+</html>

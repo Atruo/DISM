@@ -184,7 +184,7 @@ function localizarEstaciones() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones?api_key=" + key,
+        "url": `https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones?api_key=${key}`,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache"
@@ -276,5 +276,27 @@ function localizarEstaciones() {
         });
 
         
+}
+
+function getIdema() {
+    
+    var idema = document.getElementById('idema').value;
+    console.log(idema);//Muestro el idema por consola
+    var datos;
+    var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW55dWxzOThAZ21haWwuY29tIiwianRpIjoiYzQ3YzgyMzMtYzhjOC00OWQ5LTk0NzYtMDg2ZTczZGNmNDBjIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE1Mzc5NDcwMDksInVzZXJJZCI6ImM0N2M4MjMzLWM4YzgtNDlkOS05NDc2LTA4NmU3M2RjZjQwYyIsInJvbGUiOiIifQ.1Km6vaOtp-mmugfFkPhDYxziK_MZGdCAZG71Mi1ibJw';
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": `https://opendata.aemet.es/opendata/api/observacion/convencional/datos/estacion/${idema}?api_key=${key}`,
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache"
+        }
+    }
+    console.log(settings.url);//Muestro la url por consola
+    $.ajax(settings).done(function (response) {
+        console.log('entro');//Compruebo si he entrado
+        console.log(response);
+    });
 }
     
