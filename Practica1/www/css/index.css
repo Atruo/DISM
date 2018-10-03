@@ -144,3 +144,13 @@ h1 {
     max-width: 900px;
     
 }
+
+#datos{
+    max-height: 300px;
+    max-width: 300px;
+}
+
+#foto {
+    max-height: 150px;
+    max-width: 150px;
+}

@@ -52,3 +52,19 @@ function datosMun50000() {
             }
     
 }
+
+function misDatos() {
+    var modal = document.getElementById('myModal');
+    var datos = document.getElementById('datos');
+    var span = document.getElementsByClassName("close")[0];
+    datos.innerHTML = `<strong>Nombre:</strong> Sergio Bañuls Martínez <br> <strong>DNI:</strong> 48791763T <br><strong>Email:</strong> sbm72@alu.ua.es<br><br><img src="images/ua.jpg" alt="ua" id="foto" />`;
+    modal.style.display = "block";
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}

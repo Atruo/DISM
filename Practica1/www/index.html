@@ -25,12 +25,24 @@
     <title>Practica1</title>
 </head>
 <body>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="datos" style='width: 100vw; height: 100vh;'></div>
+        </div>
+
+    </div>
+
     <h1 id="hola">Práctica DISM</h1>
     <h3>Apache Córdova</h3>
     <button onclick="location.href = './mun50000.html';">Municipios de España con >50000 habitantes</button>
     <button onclick="location.href = './estaciones.html';">Estaciones Meteorológicas de España</button>
     <button onclick="location.href = './mapa.html';">Mapa Estaciones Meteorológicas de España</button>
     <button onclick="location.href = './datos.html';">Datos Estaciones Meteorológicas</button>
-
+    <button onclick="misDatos();">Créditos</button>
+    
 </body>
 </html>
