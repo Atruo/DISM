@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp937c1b" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="es-ES">
   <name>Practica1</name>
-  <description>Un proyecto en blanco que usa Apache Cordova para ayudarle a compilar una aplicación que tiene varias plataformas móviles como destino: Android, iOS y la plataforma universal de Windows.</description>
-  <author href="http://cordova.io" email="dev@cordova.apache.org">Su nombre aquí</author>
+  <description>Estaciones meteorológicas de España </description>
+  <author href="http://cordova.io" email="dev@cordova.apache.org">Sergio</author>
   <vs:template-name>BlankJS</vs:template-name>
   <vs:toolsetVersion>6.3.1</vs:toolsetVersion>
   <engine name="android" spec="5.2.1" />
@@ -104,4 +104,5 @@
     <splash src="res/screens/windows/SplashScreenPhone.scale-240.png" width="1152" height="1920" />
   </platform>
   <plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
+  <preference name="Orientation" value="landscape" />
 </widget>
