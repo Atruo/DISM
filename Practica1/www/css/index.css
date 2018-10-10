@@ -154,3 +154,7 @@ h1 {
     max-height: 150px;
     max-width: 150px;
 }
+
+#indexBotones>button{
+    margin-top: .5em;
+}

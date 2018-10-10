@@ -50,7 +50,7 @@ function estaciones() {//Tabla de las estaciones meteorologicas de espana
                             "data": "indicativo"
                         },
                         {
-                            "defaultContent": "<button class = 'open'>Mapa</button>"
+                            "defaultContent": "<button  class='btn btn- primary'>Mapa</button>"
                         }
 
                     ]

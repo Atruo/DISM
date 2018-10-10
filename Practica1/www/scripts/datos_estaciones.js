@@ -1,7 +1,7 @@
 // Datos de estaciones
-
+var click = 0;
 function getIdema() {
-
+    click++;
     var idema = document.getElementById('idema').value;
     console.log(idema);//Muestro el idema por consola
     var datos;
@@ -40,25 +40,48 @@ function getIdema() {
                 }
                 sol.push(mostrar);
             }
+            if (click === 1 ) {
+                tabla = $('#datos').DataTable({//Crear Tabla de datos
+                    "data": sol,
+                    "columns": [
+                        {
+                            "data": "idema"
+                        },
+                        {
+                            "data": "ubicacion"
+                        },
+                        {
+                            "data": "fecha_hora"
+                        },
+                        {
+                            "data": "temperatura"
+                        }
 
-            tabla = $('#datos').DataTable({//Crear Tabla de datos
-                "data": sol,
-                "columns": [
-                    {
-                        "data": "idema"
-                    },
-                    {
-                        "data": "ubicacion"
-                    },
-                    {
-                        "data": "fecha_hora"
-                    },
-                    {
-                        "data": "temperatura"
-                    }
+                    ]
+                });
+            } else {
+                tabla.destroy();
+                tabla = $('#datos').DataTable({//Crear Tabla de datos
+                    "data": sol,
+                    "columns": [
+                        {
+                            "data": "idema"
+                        },
+                        {
+                            "data": "ubicacion"
+                        },
+                        {
+                            "data": "fecha_hora"
+                        },
+                        {
+                            "data": "temperatura"
+                        }
 
-                ]
-            });
+                    ]
+                });
+                cont = 0;
+            }
+            
 
 
         });
