@@ -21,9 +21,9 @@ function getIdema() {
 
 
     $.ajax(settings).done(function (response) {
-        //Aqui no entra por algún motivo que desconozco
+        //Aqui no entra por algï¿½n motivo que desconozco
     }).fail(function (res) {
-
+        console.log(res);
         var datos = JSON.parse(res.responseText).datos;
 
 
@@ -81,13 +81,10 @@ function getIdema() {
                 });
                 cont = 0;
             }
-            
+
 
 
         });
 
     });
 }
-
-
-
