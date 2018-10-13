@@ -34,15 +34,24 @@
 <body onload="estaciones();">
     <h1>Estaciones Meteorológicas de España</h1>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+  
 
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="mapa" style=' position:relative; height: 600px; width: 400px;'></div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal_mapa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Localización</h5>
+                    
+                </div>
+                <div class="modal-body">
+                    <div id="mapa" style=' position:relative; height: 600px; width: 400px;'></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
-
     </div>
 
 

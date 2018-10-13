@@ -50,7 +50,7 @@ function estaciones() {//Tabla de las estaciones meteorologicas de espana
                             "data": "indicativo"
                         },
                         {
-                            "defaultContent": "<button  class='btn btn- primary'>Mapa</button>"
+                            "defaultContent": "<button  class='btn btn- outline - info' data-toggle='modal' data-target='#modal_mapa'>Mapa</button>"
                         }
 
                     ]
@@ -80,17 +80,8 @@ function estaciones() {//Tabla de las estaciones meteorologicas de espana
                         long = long * -1
                     }
                     //Ya tenemos la latitud y longitud ahora creamos el mapa y mostramos el modal
+                    
                     GetMap();
-                    modal.style.display = "block";
-                    span.onclick = function () {
-                        modal.style.display = "none";
-                    }
-                    window.onclick = function (event) {
-                        if (event.target == modal) {
-                            modal.style.display = "none";
-                        }
-                    }
-
 
                 });
             });
