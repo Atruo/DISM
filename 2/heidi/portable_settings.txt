@@ -87,10 +87,12 @@ Servers\Unnamed\ConnectCount<|||>3<|||>2
 Servers\Unnamed\ServerVersion<|||>3<|||>50067
 Servers\Unnamed\LastConnect<|||>1<|||>2018-10-26 11:02:29
 Servers\Unnamed\FavoriteObjects<|||>1<|||>mysql||columns_priv<{{{><}}}>dism||usuarios<{{{><}}}>
-Servers\Unnamed\lastUsedDB<|||>1<|||>dism
+Servers\Unnamed\lastUsedDB<|||>1<|||>
 Servers\Unnamed\QueryHistory\1<|||>1<|||>2018-10-25 11:31:01|dism|0|select * from usuarios<{{{><}}}>
 Servers\Unnamed\QueryHistory\2<|||>1<|||>2018-10-25 12:04:28|dism|15|CREATE TABLE municipios (nombre VARCHAR(255), latitud VARCHAR(255), longitud VARCHAR(255), habitantes INT)
 Servers\Unnamed\QueryHistory\3<|||>1<|||>2018-10-25 13:09:19|dism|0|INSERT INTO municipios (nombre, latitud, longitud, habitantes) VALUES ('prueba','65465º456','456465º','65')
 Servers\Unnamed\QueryHistory\5<|||>1<|||>2018-10-25 13:09:43|dism|0|INSERT INTO municipios (nombre, latitud, longitud, habitantes) VALUES ('prueba','65465º456','456465º','65');<{{{><}}}>select * from municipios;
 Servers\Unnamed\QueryHistory\6<|||>1<|||>2018-10-25 13:13:27|dism|16|create table municipios (nombre VARCHAR(255), latitud VARCHAR(255),longitud VARCHAR(255), habitantes VARCHAR(255))
-Servers\Unnamed\QueryHistory\4<|||>1<|||>2018-10-25 13:56:58|dism|78|select * from municipios
+Servers\Unnamed\QueryHistory\7<|||>1<|||>2018-10-26 11:14:01|dism|0|CREATE DATABASE dism2 CHARACTER SET utf8 COLLATE utf8_general_ci;
+Servers\Unnamed\QueryHistory\8<|||>1<|||>2018-10-26 11:16:16|dism2|15|create table municipios (nombre VARCHAR(255), latitud VARCHAR(255),longitud VARCHAR(255),habitantes INT)
+Servers\Unnamed\QueryHistory\4<|||>1<|||>2018-10-26 11:59:04|dism|32|select * from municipios
