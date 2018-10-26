@@ -2,7 +2,9 @@ var express = require("express");
 var mysql = require('mysql');
 var app = express();
 var bp = require('body-parser');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest; //Linea necesaria para hacer un XHMLrequest en Node.js
+var request = require('request');//Para hacer peticiones GET
+var iconv = require('iconv-lite');//Para UTF-8
+
 const cors = require('cors');
 app.use(cors());
 app.options('*', cors());
@@ -12,7 +14,8 @@ var con = mysql.createConnection({
  user : 'root',
  password : 'root',
  database : 'dism',
- port: '3311'
+ port: '3311',
+ charset : 'utf8'
  });
 //Ejemplo: GET http://localhost:8080/usuarios
 app.get('/usuarios', function(req, resp) {
@@ -42,31 +45,29 @@ app.get('/observacion', function(req, resp) {
 app.get('/introducirDatos', function(req, resp) {
 //Introducir municipios
 
-    //Peticion para obtener municipios a aemet
     var datos;
     var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW55dWxzOThAZ21haWwuY29tIiwianRpIjoiYzQ3YzgyMzMtYzhjOC00OWQ5LTk0NzYtMDg2ZTczZGNmNDBjIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE1Mzc5NDcwMDksInVzZXJJZCI6ImM0N2M4MjMzLWM4YzgtNDlkOS05NDc2LTA4NmU3M2RjZjQwYyIsInJvbGUiOiIifQ.1Km6vaOtp-mmugfFkPhDYxziK_MZGdCAZG71Mi1ibJw';
-    let xhr = new XMLHttpRequest();
-    var url = "https://opendata.aemet.es/opendata/api/maestro/municipios?api_key=" + key;
+    var url = "https://opendata.aemet.es/opendata/api/maestro/municipios?api_key=" + key;//URL para los municipios
     var municipios;
-  	xhr.open('GET',url, true);
-  	xhr.onload = function(){
-      municipios =JSON.parse(xhr.responseText);
-      console.log(municipios[2]);
-      var sql;
-      var values=[];
-       for (var i = 0; i < municipios.length; i++) {
-          values.push([`${municipios[i].nombre}`,`${municipios[i].latitud}`,`${municipios[i].longitud}`,`${municipios[i].num_hab}` ])
-       }
+    var requestOptions  = { encoding: null, method: "GET", uri: url};
+    request(requestOptions, function(error, response, body) {
+        var municipios = iconv.decode(new Buffer(body), "ISO-8859-1");//Para que este en UTF-8
+        municipios = JSON.parse(municipios);
+         var sql;
+         var values=[];
+          for (var i = 0; i < municipios.length; i++) {
+             values.push([`${municipios[i].nombre}`,`${municipios[i].latitud}`,`${municipios[i].longitud}`,`${municipios[i].num_hab}` ])
+          }
+          con.connect(function(err) {
+             if (err) throw err;
+             sql = "INSERT INTO municipios (nombre, latitud, longitud, habitantes) VALUES ?";
+             con.query(sql,[values] ,function (err, result) {
+               if (err) throw err;
+             });
+           });
+           console.log('Municipios Añadidos');//Municipios Añadidos
+    });
 
-       con.connect(function(err) {
-          if (err) throw err;
-          sql = "INSERT INTO municipios (nombre, latitud, longitud, habitantes) VALUES ?";
-          con.query(sql,[values] ,function (err, result) {
-            if (err) throw err;
-          });
-        });
-    };//Fin de xhr.onload
-    xhr.send();
 
 
 //Introducir estaciones
