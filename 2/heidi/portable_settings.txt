@@ -20,10 +20,10 @@ ColPositions_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
 ColSort_frmTableEditor.listForeignKeys<|||>1<|||>-1,0
 CoolBand0Index<|||>3<|||>0
 CoolBand0Break<|||>3<|||>1
-CoolBand0Width<|||>3<|||>1360
+CoolBand0Width<|||>3<|||>1914
 CoolBand1Index<|||>3<|||>1
 CoolBand1Break<|||>3<|||>1
-CoolBand1Width<|||>3<|||>1360
+CoolBand1Width<|||>3<|||>1914
 querymemoheight<|||>3<|||>198
 sqloutheight<|||>3<|||>107
 SingleQueries<|||>3<|||>0
@@ -87,7 +87,7 @@ Servers\Unnamed\ConnectCount<|||>3<|||>3
 Servers\Unnamed\ServerVersion<|||>3<|||>50067
 Servers\Unnamed\LastConnect<|||>1<|||>2018-10-26 18:15:54
 Servers\Unnamed\FavoriteObjects<|||>1<|||>mysql||columns_priv<{{{><}}}>dism||usuarios<{{{><}}}>
-Servers\Unnamed\lastUsedDB<|||>1<|||>
+Servers\Unnamed\lastUsedDB<|||>1<|||>dism
 Servers\Unnamed\QueryHistory\1<|||>1<|||>2018-10-25 11:31:01|dism|0|select * from usuarios<{{{><}}}>
 Servers\Unnamed\QueryHistory\2<|||>1<|||>2018-10-25 12:04:28|dism|15|CREATE TABLE municipios (nombre VARCHAR(255), latitud VARCHAR(255), longitud VARCHAR(255), habitantes INT)
 Servers\Unnamed\QueryHistory\3<|||>1<|||>2018-10-25 13:09:19|dism|0|INSERT INTO municipios (nombre, latitud, longitud, habitantes) VALUES ('prueba','65465º456','456465º','65')
@@ -95,4 +95,8 @@ Servers\Unnamed\QueryHistory\5<|||>1<|||>2018-10-25 13:09:43|dism|0|INSERT INTO 
 Servers\Unnamed\QueryHistory\6<|||>1<|||>2018-10-25 13:13:27|dism|16|create table municipios (nombre VARCHAR(255), latitud VARCHAR(255),longitud VARCHAR(255), habitantes VARCHAR(255))
 Servers\Unnamed\QueryHistory\7<|||>1<|||>2018-10-26 11:14:01|dism|0|CREATE DATABASE dism2 CHARACTER SET utf8 COLLATE utf8_general_ci;
 Servers\Unnamed\QueryHistory\8<|||>1<|||>2018-10-26 11:16:16|dism2|15|create table municipios (nombre VARCHAR(255), latitud VARCHAR(255),longitud VARCHAR(255),habitantes INT)
-Servers\Unnamed\QueryHistory\4<|||>1<|||>2018-10-26 11:59:04|dism|32|select * from municipios
+Servers\Unnamed\QueryHistory\9<|||>1<|||>2018-10-26 18:19:18|dism|562|create table municipios (id varchar(255), nombre varchar(255), latitud varchar(255), longitud varchar(255), habitnates int)
+Servers\Unnamed\QueryHistory\10<|||>1<|||>2018-10-26 18:23:03|dism|46|create table municipios (id varchar(255), nombre varchar(255), latitud varchar(255), longitud varchar(255), habitantes int)
+Servers\Unnamed\QueryHistory\11<|||>1<|||>2018-10-26 18:31:44|dism|0|select * from municipios
+Servers\Unnamed\QueryHistory\4<|||>1<|||>2018-10-26 18:49:12|dism|562|create table estaciones (id varchar(255), nombre varchar(255), latitud varchar(255), longitud varchar(255), altura int)
+Servers\Unnamed\QueryHistory\12<|||>1<|||>2018-10-26 18:59:23|dism|0|select * from estaciones
