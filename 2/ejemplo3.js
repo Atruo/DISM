@@ -4,6 +4,7 @@ var app = express();
 var bp = require('body-parser');
 var request = require('request');//Para hacer peticiones GET
 var iconv = require('iconv-lite');//Para UTF-8
+var idemas = [];
 
 const cors = require('cors');
 app.use(cors());
@@ -17,21 +18,6 @@ var con = mysql.createConnection({
  port: '3311',
  charset : 'utf8'
  });
-//Ejemplo: GET http://localhost:8080/usuarios
-app.get('/usuarios', function(req, resp) {
-  con.query('select * from usuarios', function(err, rows) {
-    if (err) {
-      console.log('Error en /usuarios '+err);
-      resp.status(500);
-      resp.send({message: "Error al obtener usuarios"});
-    }
-    else {
-      console.log('/usuarios');
-      resp.status(200);
-      resp.send(rows);
-    }
-  })
-});
 
 app.get('/municipios', function(req, resp) {
   con.query("SELECT * FROM municipios", function (err, result, fields) {
@@ -97,6 +83,7 @@ app.get('/introducirDatos', function(req, resp) {
       request(requestOptions, function(error, response, body) {
         var estaciones = iconv.decode(new Buffer(body), "ISO-8859-1");//Para que este en UTF-8
         estaciones = JSON.parse(estaciones);
+        idemas = guardarIdemas(estaciones);//Lo utilizaremos para los datos de cada estacion
         //borramos la tabla existente
         sql = "DROP TABLE estaciones";
         con.query(sql, function (err, result) {
@@ -117,26 +104,55 @@ app.get('/introducirDatos', function(req, resp) {
             if (err) throw err;
          });
           console.log('Estaciones Actualizadas');//Municipios Añadidos
+
+          // Datos
+          for (var j = 0; j < idemas.length; j++) {
+
+            url = "https://opendata.aemet.es/opendata/api/observacion/convencional/datos/estacion/"+idemas[j]+"?api_key=" + key;//URL para los municipios
+            requestOptions  = { encoding: null, method: "GET", uri: url};
+            request(requestOptions, function(error, response, body) {
+              var datos = iconv.decode(new Buffer(body), "ISO-8859-1");//Para que este en UTF-8
+              datos = JSON.parse(datos);
+              var values=[];//Datos a introducir en la BBDD
+              console.log(datos);
+                 values.push([`${idemas[j]}`,`${datos[i].ubi}`,`${datos[i].fint}`,`${datos[i].ts}`])
+
+              console.log(values);
+              // sql = "create table "+idemas[j]+" (id varchar(255), ubicacion varchar(255), fechahora varchar(255), temperatura varchar(255))";
+              // con.query(sql, function (err, result) {
+              //   if (err) throw err;
+              // });
+              sql = "INSERT INTO datos (id, ubicacion, fechahora, temperatura) VALUES ?";
+              con.query(sql,[values] ,function (err, result) {
+                 if (err) throw err;
+              });
+            //borramos la tabla existente
+            //Creamos la tabla
+            //Añadimos los valores
+
+          });
+        }
       });
+
+
     });
 
-    //Introducir observacion
-    url = "https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones?api_key=" + key;//URL para los municipios
-    requestOptions  = { encoding: null, method: "GET", uri: url};
-    request(requestOptions, function(error, response, body) {
-      var res = iconv.decode(new Buffer(body), "ISO-8859-1");//Para que este en UTF-8
 
 
-      //borramos la tabla existente
-      //Creamos la tabla
-      //Añadimos los valores
-    });
+
+
 
   resp.status(200);
   resp.send('Actualizado');
 });
 
-
+function guardarIdemas(estaciones){
+  var id = [];
+  for (var i = 0; i < estaciones.length; i++) {
+    id.push(estaciones[i].indicativo);
+  }
+  return id;
+}
 var server = app.listen(8080, function () {
  console.log('Servidor iniciado en puerto 8080…');
 });

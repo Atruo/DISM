@@ -81,11 +81,11 @@ Servers\Unnamed\SSL_Key<|||>1<|||>
 Servers\Unnamed\SSL_Cert<|||>1<|||>
 Servers\Unnamed\SSL_CA<|||>1<|||>
 Servers\Unnamed\SSL_Cipher<|||>1<|||>
-Servers\Unnamed\RefusedCount<|||>3<|||>4
+Servers\Unnamed\RefusedCount<|||>3<|||>5
 Servers\Unnamed\ServerVersionFull<|||>1<|||>5.0.67-community-nt - MySQL Community Edition (GPL)
-Servers\Unnamed\ConnectCount<|||>3<|||>3
+Servers\Unnamed\ConnectCount<|||>3<|||>4
 Servers\Unnamed\ServerVersion<|||>3<|||>50067
-Servers\Unnamed\LastConnect<|||>1<|||>2018-10-26 18:15:54
+Servers\Unnamed\LastConnect<|||>1<|||>2018-11-01 17:11:18
 Servers\Unnamed\FavoriteObjects<|||>1<|||>mysql||columns_priv<{{{><}}}>dism||usuarios<{{{><}}}>
 Servers\Unnamed\lastUsedDB<|||>1<|||>dism
 Servers\Unnamed\QueryHistory\1<|||>1<|||>2018-10-25 11:31:01|dism|0|select * from usuarios<{{{><}}}>
@@ -100,3 +100,4 @@ Servers\Unnamed\QueryHistory\10<|||>1<|||>2018-10-26 18:23:03|dism|46|create tab
 Servers\Unnamed\QueryHistory\11<|||>1<|||>2018-10-26 18:31:44|dism|0|select * from municipios
 Servers\Unnamed\QueryHistory\4<|||>1<|||>2018-10-26 18:49:12|dism|562|create table estaciones (id varchar(255), nombre varchar(255), latitud varchar(255), longitud varchar(255), altura int)
 Servers\Unnamed\QueryHistory\12<|||>1<|||>2018-10-26 18:59:23|dism|0|select * from estaciones
+Servers\Unnamed\QueryHistory\13<|||>1<|||>2018-11-01 17:40:22|dism|532|create table datos (id varchar(255), ubicacion varchar(255), fechahora varchar(255), temperatura varchar(255))
