@@ -19,23 +19,74 @@ var con = mysql.createConnection({
  charset : 'utf8'
  });
 
+
 app.get('/municipios', function(req, resp) {
-  con.query("SELECT * FROM municipios", function (err, result, fields) {
-    if (err) throw err;
-    resp.status(200);
-    resp.send(result);
+  var apto = false;
+
+  con.query("SELECT * FROM claves", function (err, result, fields) {
+
+     for (var i = 0; i < result.length; i++) {
+       if (req.query.key === result[i].clave) {
+         apto = true;
+       }
+     }
+     if (apto === true) {
+       con.query("SELECT * FROM municipios", function (err, result, fields) {
+         if (err) throw err;
+         resp.status(200);
+         resp.send(result);
+       });
+     }else {
+        resp.send('Wrong key');
+     }
+
   });
+
 
 });
 app.get('/estaciones', function(req, resp) {
-  con.query("SELECT * FROM estaciones", function (err, result, fields) {
-    if (err) throw err;
-    resp.status(200);
-    resp.send(result);
+  var apto = false;
+
+  con.query("SELECT * FROM claves", function (err, result, fields) {
+
+     for (var i = 0; i < result.length; i++) {
+       if (req.query.key === result[i].clave) {
+         apto = true;
+       }
+     }
+     if (apto === true) {
+       con.query("SELECT * FROM estaciones", function (err, result, fields) {
+         if (err) throw err;
+         resp.status(200);
+         resp.send(result);
+       });
+     }else {
+        resp.send('Wrong key');
+     }
+
   });
 });
 app.get('/observacion', function(req, resp) {
+  var apto = false;
 
+  con.query("SELECT * FROM claves", function (err, result, fields) {
+
+     for (var i = 0; i < result.length; i++) {
+       if (req.query.key === result[i].clave) {
+         apto = true;
+       }
+     }
+     if (apto === true) {
+       con.query("SELECT * FROM datos", function (err, result, fields) {
+         if (err) throw err;
+         resp.status(200);
+         resp.send(result);
+       });
+     }else {
+        resp.send('Wrong key');
+     }
+
+  });
 });
 app.get('/introducirDatos', function(req, resp) {
   //Introducir municipios
@@ -106,35 +157,39 @@ app.get('/introducirDatos', function(req, resp) {
           console.log('Estaciones Actualizadas');//Municipios Añadidos
 
           // Datos
-          for (var j = 0; j < idemas.length; j++) {
 
-            url = "https://opendata.aemet.es/opendata/api/observacion/convencional/datos/estacion/"+idemas[j]+"?api_key=" + key;//URL para los municipios
+            url = "https://opendata.aemet.es/opendata/api/observacion/convencional/todas?api_key=" + key;//URL para los municipios
             requestOptions  = { encoding: null, method: "GET", uri: url};
             request(requestOptions, function(error, response, body) {
               var datos = iconv.decode(new Buffer(body), "ISO-8859-1");//Para que este en UTF-8
               datos = JSON.parse(datos);
-              var values=[];//Datos a introducir en la BBDD
-              console.log(datos);
-                 values.push([`${idemas[j]}`,`${datos[i].ubi}`,`${datos[i].fint}`,`${datos[i].ts}`])
-
-              console.log(values);
-              // sql = "create table "+idemas[j]+" (id varchar(255), ubicacion varchar(255), fechahora varchar(255), temperatura varchar(255))";
-              // con.query(sql, function (err, result) {
-              //   if (err) throw err;
-              // });
-              sql = "INSERT INTO datos (id, ubicacion, fechahora, temperatura) VALUES ?";
-              con.query(sql,[values] ,function (err, result) {
-                 if (err) throw err;
-              });
-            //borramos la tabla existente
-            //Creamos la tabla
-            //Añadimos los valores
-
-          });
-        }
+              url = datos.datos//URL para los municipios
+              requestOptions  = { encoding: null, method: "GET", uri: url};
+              request(requestOptions, function(error, response, body) {
+                var datos = iconv.decode(new Buffer(body), "ISO-8859-1");//Para que este en UTF-8
+                datos = JSON.parse(datos);
+                var estaciones = [];
+                con.query("SELECT * FROM datos", function (err, result, fields) {
+                  if (err) throw err;
+                  estaciones = result;
+                });
+                for (var i = 0; i < datos.length; i++) {
+                  if (noEsta(estaciones, datos[i]) === true) {
+                    var values=[];//Datos a introducir en la BBDD
+                    values.push([`${datos[i].idema}`,`${datos[i].ubi}`,`${datos[i].fint}`,`${datos[i].ta}`])
+                    sql = "INSERT INTO datos (id, ubicacion, fechahora, temperatura) VALUES ?";
+                    con.query(sql,[values] ,function (err, result) {
+                       if (err) throw err;
+                    });
+                  }
+                }
+                console.log('Datos Actualizados');
+              //borramos la tabla existente
+              //Creamos la tabla
+              //Añadimos los valores
+            });//fin segunda consulta datos
+          });//fin primera consulta datos
       });
-
-
     });
 
 
@@ -152,6 +207,15 @@ function guardarIdemas(estaciones){
     id.push(estaciones[i].indicativo);
   }
   return id;
+}
+function noEsta(estaciones, estacion){
+  var esta = false;
+  for (var i = 0; i < estaciones.length; i++) {
+    if (estaciones[i].id === estacion.idema) {
+      esta = true;
+    }
+  }
+  return esta;
 }
 var server = app.listen(8080, function () {
  console.log('Servidor iniciado en puerto 8080…');

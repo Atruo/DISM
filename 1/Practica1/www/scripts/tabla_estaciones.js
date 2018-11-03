@@ -6,33 +6,20 @@ function estaciones() {//Tabla de las estaciones meteorologicas de espana
     //Hay que hacer dos gets porque el primero nos da una una url con el JSON
 
     var datos;
-    var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW55dWxzOThAZ21haWwuY29tIiwianRpIjoiYzQ3YzgyMzMtYzhjOC00OWQ5LTk0NzYtMDg2ZTczZGNmNDBjIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE1Mzc5NDcwMDksInVzZXJJZCI6ImM0N2M4MjMzLWM4YzgtNDlkOS05NDc2LTA4NmU3M2RjZjQwYyIsInJvbGUiOiIifQ.1Km6vaOtp-mmugfFkPhDYxziK_MZGdCAZG71Mi1ibJw';
+    var key = '987654321';
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones?api_key=" + key,
+        "url": "http://localhost:8080/estaciones?key=" + key,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache"
         }
     }
 
-
-    InicializarGrid();
-
-    function InicializarGrid() {
-        $.ajax(settings).done(function (response) {
-            settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": response.datos,
-                "method": "GET",
-                "headers": {
-                    "cache-control": "no-cache"
-                }
-            }
+          
             $.ajax(settings).done(function (response) {
-                var datos = JSON.parse(response);
+                var datos = (response);
 
                 tabla = $('#estaciones').DataTable({//Crear Tabla de estaciones
                     "data": datos,
@@ -47,7 +34,7 @@ function estaciones() {//Tabla de las estaciones meteorologicas de espana
                             "data": "longitud"
                         },
                         {
-                            "data": "indicativo"
+                            "data": "id"
                         },
                         {
                             "defaultContent": "<button  class='btn btn- outline - info' data-toggle='modal' data-target='#modal_mapa'>Mapa</button>"
@@ -87,9 +74,7 @@ function estaciones() {//Tabla de las estaciones meteorologicas de espana
             });
 
 
-        });
-    }
-
+  
 }
 
 

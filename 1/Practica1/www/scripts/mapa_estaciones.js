@@ -10,28 +10,20 @@ function localizarEstaciones() {
     });
 
     var datos;
-    var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW55dWxzOThAZ21haWwuY29tIiwianRpIjoiYzQ3YzgyMzMtYzhjOC00OWQ5LTk0NzYtMDg2ZTczZGNmNDBjIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE1Mzc5NDcwMDksInVzZXJJZCI6ImM0N2M4MjMzLWM4YzgtNDlkOS05NDc2LTA4NmU3M2RjZjQwYyIsInJvbGUiOiIifQ.1Km6vaOtp-mmugfFkPhDYxziK_MZGdCAZG71Mi1ibJw';
+    var key = '123456789';
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": `https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones?api_key=${key}`,
+        "url": `http://localhost:8080/estaciones?key=${key}`,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache"
         }
-    }
-    $.ajax(settings).done(function (response) {
-        settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": response.datos,
-            "method": "GET",
-            "headers": {
-                "cache-control": "no-cache"
-            }
-        }
-        $.ajax(settings).done(function (response) {//Procesar y almacenar las latitudes y longitudes
-            var datos = JSON.parse(response);
+    } 
+    $.ajax(settings).done(function (response) {//Procesar y almacenar las latitudes y longitudes
+        
+            var datos = (response);
+           
             var latlongs = [];
             for (var j = 0; j < datos.length; j++) {
                 var add = {
@@ -81,7 +73,7 @@ function localizarEstaciones() {
 
                 pin.metadata = {
                     title: datos[i].nombre,
-                    description: 'Altitud:' + datos[i].altitud
+                    description: 'Altitud:' + datos[i].altura
                 };
 
 
@@ -103,7 +95,7 @@ function localizarEstaciones() {
         });
 
 
-    });
+   
 
 
 }

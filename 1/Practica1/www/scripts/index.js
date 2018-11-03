@@ -3,11 +3,11 @@
 function datosMun50000() {
     var datos;
     var datosfiltrados2 = [];
-    var key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW55dWxzOThAZ21haWwuY29tIiwianRpIjoiYzQ3YzgyMzMtYzhjOC00OWQ5LTk0NzYtMDg2ZTczZGNmNDBjIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE1Mzc5NDcwMDksInVzZXJJZCI6ImM0N2M4MjMzLWM4YzgtNDlkOS05NDc2LTA4NmU3M2RjZjQwYyIsInJvbGUiOiIifQ.1Km6vaOtp-mmugfFkPhDYxziK_MZGdCAZG71Mi1ibJw';
+    var key = 'qwertyuio';
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://opendata.aemet.es/opendata/api/maestro/municipios?api_key=" + key,
+        "url": "http://localhost:8080/municipios?key=" + key,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache"
@@ -21,11 +21,12 @@ function datosMun50000() {
                 $.ajax(settings).done(function (response) {
                     var j = 0;
                     //Parseo a objeto para filtrar y meter en datatable
-                    datos = JSON.parse(response);
+                    datos = (response);
+                    
                     //Filtro los municipios que contengan "san vicente"
                     var cont = 0;
                     for (var i = 0; i < datos.length; i++) {
-                        if (datos[i].num_hab >= 50000) {
+                        if (datos[i].habitantes >= 50000) {
                             datosfiltrados2[cont] = datos[i];
                             cont++;
                         }
@@ -44,7 +45,7 @@ function datosMun50000() {
                                 "data": "longitud"
                             },
                             {
-                                "data": "num_hab"
+                                "data": "habitantes"
                             }
                         ]
                     });
