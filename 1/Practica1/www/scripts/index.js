@@ -69,3 +69,28 @@ function misDatos() {
         }
     }
 }
+
+
+function actualizar() {
+    var key = '123456789';
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": `http://localhost:8080/introducirDatos?key=${key}`,
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache",
+            'Accept': 'application/javascript'
+        }
+    }
+    
+
+
+
+
+
+    $.ajax(settings).done(function (response) {
+
+
+    });
+}

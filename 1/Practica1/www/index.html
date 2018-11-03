@@ -42,7 +42,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <strong>Nombre:</strong> 
+                    <strong>Nombre:</strong>
                     Sergio Bañuls Martínez <br>
                     <strong>DNI:</strong> 48791763T <br>
                     <strong>Email:</strong> sbm72@alu.ua.es<br><br>
@@ -50,7 +50,28 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2-->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Créditos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Datos Actualizados</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
                 </div>
             </div>
         </div>
@@ -64,6 +85,7 @@
         <button type="button" class="btn btn-outline-success" onclick="location.href = './estaciones.html';">Estaciones Meteorológicas de España</button>
         <button type="button" class="btn btn-outline-danger" onclick="location.href = './mapa.html';">Mapa Estaciones Meteorológicas de España</button>
         <button type="button" class="btn btn-outline-warning" onclick="location.href = './datos.html';">Datos Estaciones Meteorológicas</button>
+        <button type="button" class="btn btn-outline-primary" onclick="actualizar();" data-toggle="modal" data-target="#exampleModal2">Actualizar Datos</button>
         <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">Créditos</button>
     </div>
 
