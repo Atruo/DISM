@@ -20,10 +20,10 @@ ColPositions_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
 ColSort_frmTableEditor.listForeignKeys<|||>1<|||>-1,0
 CoolBand0Index<|||>3<|||>0
 CoolBand0Break<|||>3<|||>1
-CoolBand0Width<|||>3<|||>1914
+CoolBand0Width<|||>3<|||>1360
 CoolBand1Index<|||>3<|||>1
 CoolBand1Break<|||>3<|||>1
-CoolBand1Width<|||>3<|||>1914
+CoolBand1Width<|||>3<|||>1360
 querymemoheight<|||>3<|||>198
 sqloutheight<|||>3<|||>107
 SingleQueries<|||>3<|||>0
@@ -83,9 +83,9 @@ Servers\Unnamed\SSL_CA<|||>1<|||>
 Servers\Unnamed\SSL_Cipher<|||>1<|||>
 Servers\Unnamed\RefusedCount<|||>3<|||>5
 Servers\Unnamed\ServerVersionFull<|||>1<|||>5.0.67-community-nt - MySQL Community Edition (GPL)
-Servers\Unnamed\ConnectCount<|||>3<|||>6
+Servers\Unnamed\ConnectCount<|||>3<|||>7
 Servers\Unnamed\ServerVersion<|||>3<|||>50067
-Servers\Unnamed\LastConnect<|||>1<|||>2018-11-03 17:52:33
+Servers\Unnamed\LastConnect<|||>1<|||>2018-11-12 09:06:05
 Servers\Unnamed\FavoriteObjects<|||>1<|||>mysql||columns_priv<{{{><}}}>dism||usuarios<{{{><}}}>
 Servers\Unnamed\lastUsedDB<|||>1<|||>dism
 Servers\Unnamed\QueryHistory\1<|||>1<|||>2018-10-25 11:31:01|dism|0|select * from usuarios<{{{><}}}>

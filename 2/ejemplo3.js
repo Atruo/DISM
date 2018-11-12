@@ -41,7 +41,7 @@ app.get('/municipios', function(req, resp) {
      }
 
   });
-
+console.log('se han pedido los municipios');
 
 });
 app.get('/estaciones', function(req, resp) {
@@ -65,6 +65,7 @@ app.get('/estaciones', function(req, resp) {
      }
 
   });
+  console.log('Se han pedido las estaciones');
 });
 app.get('/observacion', function(req, resp) {
   var apto = false;
@@ -87,6 +88,7 @@ app.get('/observacion', function(req, resp) {
      }
 
   });
+  console.log('se han pedido los datos de observacion');
 });
 app.get('/introducirDatos', function(req, resp) {
   var apto = false;
@@ -202,7 +204,7 @@ app.get('/introducirDatos', function(req, resp) {
            });
          });
        resp.status(200);
-       resp.send('Actualizado');
+       resp.send('Actualizado (esta operación puede tardar unos minutos...)');
      }else {
         resp.send('Wrong key');
      }
