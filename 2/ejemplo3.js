@@ -113,7 +113,7 @@ app.get('/introducirDatos', function(req, resp) {
              var municipios = iconv.decode(new Buffer(body), "ISO-8859-1");//Para que este en UTF-8
              municipios = JSON.parse(municipios);//Lista de todos los municipios de AEMET
              //borramos la tabla existente
-               sql = "DROP TABLE municipios";
+               sql = "DROP TABLE if exists municipios";
                con.query(sql, function (err, result) {
                  if (err) throw err;
                });
@@ -148,7 +148,7 @@ app.get('/introducirDatos', function(req, resp) {
              estaciones = JSON.parse(estaciones);
              idemas = guardarIdemas(estaciones);//Lo utilizaremos para los datos de cada estacion
              //borramos la tabla existente
-             sql = "DROP TABLE estaciones";
+             sql = "DROP TABLE if exists estaciones";
              con.query(sql, function (err, result) {
                if (err) throw err;
              });
@@ -175,25 +175,40 @@ app.get('/introducirDatos', function(req, resp) {
                  request(requestOptions, function(error, response, body) {
                    var datos = iconv.decode(new Buffer(body), "ISO-8859-1");//Para que este en UTF-8
                    datos = JSON.parse(datos);
+
                    url = datos.datos//URL para los municipios
                    requestOptions  = { encoding: null, method: "GET", uri: url};
                    request(requestOptions, function(error, response, body) {
                      var datos = iconv.decode(new Buffer(body), "ISO-8859-1");//Para que este en UTF-8
                      datos = JSON.parse(datos);
+
+
+                     //Borramos
+                     sql = "DROP TABLE if exists datos";
+                     con.query(sql, function (err, result) {
+                       if (err) throw err;
+                     });
+                     //Creamos la tabla
+                     sql = "create table datos (id varchar(255), ubicacion varchar(255), fechahora varchar(255), temperatura varchar(255))";
+                     con.query(sql, function (err, result) {
+                       if (err) throw err;
+                     });
+
+
                      var estaciones = [];
                      con.query("SELECT * FROM datos", function (err, result, fields) {
                        if (err) throw err;
                        estaciones = result;
                      });
                      for (var i = 0; i < datos.length; i++) {
-                       if (noEsta(estaciones, datos[i]) === true) {
+                      // if (noEsta(estaciones, datos[i]) === true) {
                          var values=[];//Datos a introducir en la BBDD
                          values.push([`${datos[i].idema}`,`${datos[i].ubi}`,`${datos[i].fint}`,`${datos[i].ta}`])
                          sql = "INSERT INTO datos (id, ubicacion, fechahora, temperatura) VALUES ?";
                          con.query(sql,[values] ,function (err, result) {
                             if (err) throw err;
                          });
-                       }
+                      // }
                      }
                      console.log('Datos Actualizados');
                    //borramos la tabla existente
@@ -229,6 +244,7 @@ function noEsta(estaciones, estacion){
   }
   return esta;
 }
+
 var server = app.listen(8080, function () {
  console.log('Servidor iniciado en puerto 8080…');
 });

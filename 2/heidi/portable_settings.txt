@@ -83,9 +83,9 @@ Servers\Unnamed\SSL_CA<|||>1<|||>
 Servers\Unnamed\SSL_Cipher<|||>1<|||>
 Servers\Unnamed\RefusedCount<|||>3<|||>5
 Servers\Unnamed\ServerVersionFull<|||>1<|||>5.0.67-community-nt - MySQL Community Edition (GPL)
-Servers\Unnamed\ConnectCount<|||>3<|||>7
+Servers\Unnamed\ConnectCount<|||>3<|||>9
 Servers\Unnamed\ServerVersion<|||>3<|||>50067
-Servers\Unnamed\LastConnect<|||>1<|||>2018-11-12 09:06:05
+Servers\Unnamed\LastConnect<|||>1<|||>2018-11-14 12:58:32
 Servers\Unnamed\FavoriteObjects<|||>1<|||>mysql||columns_priv<{{{><}}}>dism||usuarios<{{{><}}}>
 Servers\Unnamed\lastUsedDB<|||>1<|||>dism
 Servers\Unnamed\QueryHistory\1<|||>1<|||>2018-10-25 11:31:01|dism|0|select * from usuarios<{{{><}}}>
@@ -101,7 +101,7 @@ Servers\Unnamed\QueryHistory\11<|||>1<|||>2018-10-26 18:31:44|dism|0|select * fr
 Servers\Unnamed\QueryHistory\4<|||>1<|||>2018-10-26 18:49:12|dism|562|create table estaciones (id varchar(255), nombre varchar(255), latitud varchar(255), longitud varchar(255), altura int)
 Servers\Unnamed\QueryHistory\12<|||>1<|||>2018-10-26 18:59:23|dism|0|select * from estaciones
 Servers\Unnamed\QueryHistory\13<|||>1<|||>2018-11-01 17:40:22|dism|532|create table datos (id varchar(255), ubicacion varchar(255), fechahora varchar(255), temperatura varchar(255))
-Servers\Unnamed\QueryHistory\14<|||>1<|||>2018-11-03 17:57:04|dism|15|select * from datos
 Servers\Unnamed\QueryHistory\15<|||>1<|||>2018-11-03 18:04:15|dism|31|create table claves (clave varchar(256))
 Servers\Unnamed\QueryHistory\16<|||>1<|||>2018-11-03 18:05:25|dism|0|INSERT INTO claves (clave) VALUES ('123456789');<{{{><}}}>INSERT INTO claves (clave) VALUES ('987654321');<{{{><}}}>INSERT INTO claves (clave) VALUES ('abcdefghi');<{{{><}}}>INSERT INTO claves (clave) VALUES ('qwertyuio');
 Servers\Unnamed\QueryHistory\17<|||>1<|||>2018-11-03 19:09:45|dism|0|select * from datos where id = '1387'
+Servers\Unnamed\QueryHistory\14<|||>1<|||>2018-11-14 13:12:50|dism|47|select * from datos
